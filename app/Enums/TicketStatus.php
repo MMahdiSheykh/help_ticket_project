@@ -1,6 +1,6 @@
 <?php namespace App\Enums;
 
-enum TicketEnum: string
+enum TicketStatus: string
 {
     case OPEN = 'open';
     case RESOLVED = 'resolved';
