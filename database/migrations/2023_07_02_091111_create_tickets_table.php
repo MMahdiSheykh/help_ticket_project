@@ -11,8 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('tickets', function (Blueprint $table) {
-            //
+        Schema::create('tickets', function (Blueprint $table) {
+            $table->id();
+            $table->string('title');
+            $table->text('description');
+            $table->enum('status',['open','resolved','rejected'])->default('open');
+            $table->string('attachment')->nullable();
+            $table->integer('user_id');
+            $table->integer('status_changed_by_id')->nullable();
         });
     }
 
@@ -21,8 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('tickets', function (Blueprint $table) {
-            //
-        });
+        Schema::dropIfExists('tickets');
     }
 };
